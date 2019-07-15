@@ -1,0 +1,10 @@
+version: '3'
+services:
+  python3:
+    restart: always
+    build: .
+    container_name: 'python3'
+    working_dir: '/root/tinder-paisen'
+    tty: true
+    volumes:
+      - .:/root/tinder-paisen
