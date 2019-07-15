@@ -1,6 +1,6 @@
 version: '3'
 services:
-  python3:
+  oppai:
     restart: always
     build: .
     container_name: 'python3'
