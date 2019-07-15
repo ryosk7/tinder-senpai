@@ -11,7 +11,7 @@ $ docker-compose run oppai sh
 $ pipenv install
 ```
 ### 焦らないで！あと少しで女の子とマッチングできるよ！
-.envを作成。
+.envを作成。(.env.sampleのように作成する)
 以下を記入。
 ```.env
 FB_EMAIL = "○○○○.samplemail.com"
