@@ -16,15 +16,16 @@ $ pipenv install
 ```.env
 FB_EMAIL = "○○○○.samplemail.com"
 FB_PASS = "○○○○○○○○○○○○○○○"
-SLACK_WEB_HOOK_URL = "https://hooks.slack.com/services/○○○○○○○○○○○○○○○○○○○"
+SLACK_WEB_HOOK_ENDPOINT = "○○○○○○○○○○○○○○○○○○○"
 ```
-FB_EMAILはFacebookに登録されているメール。
-FB_PASSはFacebookに登録されているパスワード。
-SLACK_WEB_HOOK_URLはSlackのアプリからincoming-webhookをインストールすると、生成されるURL。
+FB_EMAILは、Facebookに登録されているメール。
+FB_PASSは、Facebookに登録されているパスワード。
+SLACK_WEB_HOOK_ENDPOINT、はSlackのアプリからincoming-webhookをインストールすると、生成されるURL。
+「https://hooks.slack.com/services/○○○○○○○○○○○○○○○○○○○」の○○○部分を記入する。
 ### さぁ！女の子と出会おう！！
 ```
 (コンテナ内)
-$ python tinder.py
+$ pipenv run start
 ```
 tinder.pyの中にあるlocationを変更することで、探してくれる場所を帰ることができるよ！
 あと、tinderに課金しとくといいかもね！
