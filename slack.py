@@ -4,7 +4,7 @@ from os.path import join, dirname
 from dotenv import load_dotenv
 
 endpoint = "SLACK_WEB_HOOK_ENDPOINT"
-WEB_HOOK_URL = "https://hooks.slack.com/services/{}".format(id)
+WEB_HOOK_URL = "https://hooks.slack.com/services/{}".format(endpoint)
 
 def getImageUrlForSlack(imageUrl):
   requests.post(WEB_HOOK_URL, data = json.dumps({
