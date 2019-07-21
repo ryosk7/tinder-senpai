@@ -1,5 +1,6 @@
 from accessToken import getAccessToken
 from slack import getImageUrlForSlack
+from face_api import checkFaceApi
 from dotenv import load_dotenv
 import os
 from os.path import join, dirname
@@ -48,10 +49,9 @@ with requests.Session() as s:
 				image = image['url']
 				if image.endswith(".webp"):
 					sendImage = image.replace(".webp",".jpg") #.webpを.jpgに変換
+			checkFaceApi(sendImage)
 			getImageUrlForSlack(sendImage)
 			count += 1
-			if count == 100:
-				print("done!!")
 	
 	# TODO: Firebase使って画像保存
   # NOTE: 以下はやりたいこと。25歳以下だけスワイプとか、写真を何枚か取得するとか色々。
