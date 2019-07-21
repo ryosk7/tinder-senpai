@@ -41,17 +41,23 @@ with requests.Session() as s:
 		users = s.post("https://api.gotinder.com/user/recs")
 		for user in json.loads(users.text)["results"]:
 			id = user["_id"]
+			face_image_list = []
+			judge = False
 			for image in user["photos"]:
 				sendImage = ''
 				image = image['url']
 				if image.endswith(".webp"):
 					sendImage = image.replace(".webp",".jpg") #.webpを.jpgに変換
-				if sendImage is not '':
-					checkFaceApi(sendImage)
-				getImageUrlForSlack(sendImage)
+				face_image_list.append(sendImage)
+			if sendImage is not '':
+					judge = checkFaceApi(face_image_list)
 			# 右スワイプ
-			s.get("https://api.gotinder.com/like/{}".format(id))
-			print(user["name"],"❤️")
+			if judge == True:
+				s.get("https://api.gotinder.com/like/{}".format(id))
+				print(user["name"],"❤️")
+				getImageUrlForSlack(face_image_list[0]) # Slackに送る
+			else:
+				print(user["name"],"❌")
 			count += 1
 	
 # TODO: Firebase使って画像保存
