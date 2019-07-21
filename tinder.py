@@ -1,5 +1,6 @@
 from accessToken import getAccessToken
 from slack import getImageUrlForSlack
+from face_api import checkFaceApi
 from dotenv import load_dotenv
 import os
 from os.path import join, dirname
@@ -40,18 +41,24 @@ with requests.Session() as s:
 		users = s.post("https://api.gotinder.com/user/recs")
 		for user in json.loads(users.text)["results"]:
 			id = user["_id"]
-			# 右スワイプ
-			s.get("https://api.gotinder.com/like/{}".format(id))
-			print(user["name"],"❤️")
+			face_image_list = []
+			judge = False
 			for image in user["photos"]:
 				sendImage = ''
 				image = image['url']
 				if image.endswith(".webp"):
 					sendImage = image.replace(".webp",".jpg") #.webpを.jpgに変換
-			getImageUrlForSlack(sendImage)
+				face_image_list.append(sendImage)
+			if sendImage is not '':
+					judge = checkFaceApi(face_image_list)
+			# 右スワイプ
+			if judge == True:
+				s.get("https://api.gotinder.com/like/{}".format(id))
+				print(user["name"],"❤️")
+				getImageUrlForSlack(face_image_list[0]) # Slackに送る
+			else:
+				print(user["name"],"❌")
 			count += 1
-			if count == 100:
-				print("done!!")
 	
-	# TODO: Firebase使って画像保存
-  # NOTE: 以下はやりたいこと。25歳以下だけスワイプとか、写真を何枚か取得するとか色々。
+# TODO: Firebase使って画像保存
+# NOTE: 以下はやりたいこと。25歳以下だけスワイプとか、写真を何枚か取得するとか色々。
