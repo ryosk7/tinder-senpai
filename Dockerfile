@@ -14,3 +14,5 @@ RUN apt-get install -y vim less
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip3 install pipenv
+
+RUN echo 'alias hi="echo hello"' >> ~/.bashrc
