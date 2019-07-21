@@ -19,5 +19,10 @@ CF.BaseUrl.set(BASE_URL)
 
 # You can use this example JPG or replace the URL below with your own URL to a JPEG image.
 def checkFaceApi(face_image_url):
-  faces = CF.face.detect(face_image_url)
-  print(faces)
+  face_list = []
+  if face_image_url is not '':
+    faces = CF.face.detect(face_image_url)
+    face_list.append(faces)
+    print(faces)
+  if len(face_list[0]) is 0:
+    print("❌")

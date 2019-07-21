@@ -41,17 +41,18 @@ with requests.Session() as s:
 		users = s.post("https://api.gotinder.com/user/recs")
 		for user in json.loads(users.text)["results"]:
 			id = user["_id"]
-			# 右スワイプ
-			s.get("https://api.gotinder.com/like/{}".format(id))
-			print(user["name"],"❤️")
 			for image in user["photos"]:
 				sendImage = ''
 				image = image['url']
 				if image.endswith(".webp"):
 					sendImage = image.replace(".webp",".jpg") #.webpを.jpgに変換
-			checkFaceApi(sendImage)
-			getImageUrlForSlack(sendImage)
+				if sendImage is not '':
+					checkFaceApi(sendImage)
+				getImageUrlForSlack(sendImage)
+			# 右スワイプ
+			s.get("https://api.gotinder.com/like/{}".format(id))
+			print(user["name"],"❤️")
 			count += 1
 	
-	# TODO: Firebase使って画像保存
-  # NOTE: 以下はやりたいこと。25歳以下だけスワイプとか、写真を何枚か取得するとか色々。
+# TODO: Firebase使って画像保存
+# NOTE: 以下はやりたいこと。25歳以下だけスワイプとか、写真を何枚か取得するとか色々。
