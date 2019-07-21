@@ -14,14 +14,16 @@ $ pipenv install
 .envを作成。(.env.sampleのように作成する)
 以下を記入。
 ```.env
-FB_EMAIL = "○○○○.samplemail.com"
-FB_PASS = "○○○○○○○○○○○○○○○"
-SLACK_WEB_HOOK_ENDPOINT = "○○○○○○○○○○○○○○○○○○○"
+FB_EMAIL="○○○○.samplemail.com"
+FB_PASS="○○○○○○○○○○○○○○○"
+SLACK_WEB_HOOK_ENDPOINT="○○○○○○○○○○○○○○○○○○○"
+FACE_API_TOKEN="○○○○○○○○○○○○○○○○○○○"
 ```
 FB_EMAILは、Facebookに登録されているメール。
 FB_PASSは、Facebookに登録されているパスワード。
-SLACK_WEB_HOOK_ENDPOINT、はSlackのアプリからincoming-webhookをインストールすると、生成されるURL。
+SLACK_WEB_HOOK_ENDPOINTは、Slackのアプリからincoming-webhookをインストールすると、生成されるURL。
 「https://hooks.slack.com/services/○○○○○○○○○○○○○○○○○○○」の○○○部分を記入する。
+FACE_API_TOKENは、Face Apiのトークン。これを設定することで、顔の判定を行う。
 ### さぁ！女の子と出会おう！！
 ```
 (コンテナ内)
